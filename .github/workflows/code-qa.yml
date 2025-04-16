@@ -29,8 +29,6 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Compile
-        run: pnpm compile
       - name: Check types
         run: pnpm check-types
       - name: Lint
@@ -74,7 +72,7 @@ jobs:
       - name: Run knip checks
         run: pnpm knip
 
-  test-extension:
+  unit-test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -93,36 +91,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Compile (to build and copy WASM files)
-        run: pnpm compile
       - name: Run unit tests
-        run: npx jest --silent
-
-  test-webview:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install
-      - name: Run unit tests
-        working-directory: webview-ui
-        run: npx jest --silent
-
-  unit-test:
-    needs: [test-extension, test-webview]
-    runs-on: ubuntu-latest
-    steps:
-      - name: NO-OP
-        run: echo "All unit tests passed."
+        run: pnpm test
 
   check-openrouter-api-key:
     runs-on: ubuntu-latest
