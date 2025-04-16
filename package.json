@@ -2,7 +2,6 @@
 	"name": "roo-code",
 	"packageManager": "pnpm@10.8.1",
 	"engines": {
-		"vscode": "^1.84.0",
 		"node": "20.18.1"
 	},
 	"scripts": {
@@ -12,17 +11,15 @@
 		"check-types": "turbo check-types --log-order grouped --output-logs new-only",
 		"test": "turbo test --log-order grouped --output-logs new-only",
 		"format": "turbo format --log-order grouped --output-logs new-only",
+		"dev": "pnpm --filter @roo-code/vscode-webview dev",
+		"build": "pnpm --filter @roo-code/vscode build",
 		"changeset": "changeset",
 		"knip": "knip --include files",
 		"update-contributors": "node scripts/update-contributors.js"
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.27.10",
-		"@changesets/types": "^6.0.0",
 		"@dotenvx/dotenvx": "^1.34.0",
-		"@types/node": "^22.14.1",
-		"@typescript-eslint/eslint-plugin": "^7.14.1",
-		"@typescript-eslint/parser": "^7.11.0",
 		"eslint": "^8.57.0",
 		"husky": "^9.1.7",
 		"knip": "^5.44.4",
@@ -30,8 +27,7 @@
 		"only-allow": "^1.2.1",
 		"prettier": "^3.4.2",
 		"turbo": "^2.5.0",
-		"typescript": "^5.4.5",
-		"zod-to-ts": "^1.2.0"
+		"typescript": "^5.4.5"
 	},
 	"lint-staged": {
 		"*.{js,jsx,ts,tsx,json,css,md}": [
