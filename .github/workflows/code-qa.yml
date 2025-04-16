@@ -10,6 +10,7 @@ on:
 
 env:
   NODE_VERSION: 20.18.1
+  PNPM_VERSION: 10.7.1
 
 jobs:
   compile:
@@ -17,6 +18,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -36,6 +41,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -51,6 +60,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -69,6 +82,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -141,4 +158,4 @@ jobs:
         run: echo "OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}" > .env.local
       - name: Run integration tests
         working-directory: e2e
-        run: xvfb-run -a pnpm ci
+        run: xvfb-run -a pnpm install
