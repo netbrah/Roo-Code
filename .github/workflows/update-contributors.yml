@@ -8,7 +8,7 @@ on:
 
 env:
   NODE_VERSION: 20.18.1
-  PNPM_VERSION: 10.7.1
+  PNPM_VERSION: 10.8.1
 
 jobs:
   update-contributors:

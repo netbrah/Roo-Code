@@ -1,6 +1,6 @@
 {
 	"name": "roo-code",
-	"packageManager": "pnpm@10.7.1",
+	"packageManager": "pnpm@10.8.1",
 	"engines": {
 		"vscode": "^1.84.0",
 		"node": "20.18.1"
