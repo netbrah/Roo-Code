@@ -20,6 +20,6 @@ echo "Changeset files: $NEW_CHANGESETS"
 
 if [ "$NEW_CHANGESETS" == "0" ]; then
   echo "-------------------------------------------------------------------------------------"
-  echo "Changes detected. Please run 'npm run changeset' to create a changeset if applicable."
+  echo "Changes detected. Please run 'pnpm changeset' to create a changeset if applicable."
   echo "-------------------------------------------------------------------------------------"
 fi
