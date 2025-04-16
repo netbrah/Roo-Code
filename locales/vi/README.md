@@ -47,15 +47,13 @@ Kiểm tra [CHANGELOG](../CHANGELOG.md) để biết thông tin chi tiết về 
 
 ---
 
-## 🎉 Đã Phát Hành Roo Code 3.11
+## 🎉 Đã Phát Hành Roo Code 3.12
 
-Roo Code 3.11 mang đến những cải tiến hiệu suất đáng kể và các tính năng mới!
+Roo Code 3.12 mang đến những tính năng mới và cải tiến dựa trên phản hồi của bạn!
 
-- Chỉnh sửa nhanh - Các chỉnh sửa giờ đây được áp dụng nhanh hơn nhiều. Ít thời gian chờ đợi, nhiều thời gian lập trình.
-- Số dư khóa API - Xem số dư OpenRouter và Requesty của bạn trong cài đặt.
-- Cấu hình MCP cấp dự án - Giờ đây bạn có thể cấu hình theo từng dự án/không gian làm việc.
-- Hỗ trợ Gemini được cải thiện - Thử lại thông minh hơn, sửa lỗi escape, thêm vào nhà cung cấp Vertex.
-- Nhập/Xuất cài đặt - Dễ dàng sao lưu hoặc chia sẻ cấu hình của bạn giữa các môi trường khác nhau.
+- **Hỗ trợ Grok** - Thêm nhà cung cấp xAI và tùy chọn về mức độ lý luận cho các mô hình Grok trên OpenRouter
+- **Cải tiến chỉnh sửa khác biệt** - Tùy chọn cấu hình theo hồ sơ và chuẩn hóa chuỗi tốt hơn để giảm lỗi
+- **Điểm kiểm tra nhanh hơn** - Điểm kiểm tra nhanh hơn và đáng tin cậy hơn
 
 ---
 

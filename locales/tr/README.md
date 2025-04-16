@@ -47,15 +47,13 @@ Detaylı güncellemeler ve düzeltmeler için [CHANGELOG](../CHANGELOG.md) dosya
 
 ---
 
-## 🎉 Roo Code 3.11 Yayınlandı
+## 🎉 Roo Code 3.12 Yayınlandı
 
-Roo Code 3.11 önemli performans iyileştirmeleri ve yeni özellikler getiriyor!
+Roo Code 3.12 geri bildirimlerinize dayanarak yeni özellikler ve iyileştirmeler getiriyor!
 
-- Hızlı Düzenlemeler - Düzenlemeler artık çok daha hızlı uygulanıyor. Daha az bekleme, daha çok kodlama.
-- API Anahtar Bakiyeleri - OpenRouter ve Requesty bakiyelerinizi ayarlarda görüntüleyin.
-- Proje Seviyesinde MCP Yapılandırması - Artık her proje/çalışma alanı için yapılandırabilirsiniz.
-- Geliştirilmiş Gemini Desteği - Daha akıllı yeniden denemeler, düzeltilmiş kaçış karakterleri, Vertex sağlayıcısına eklendi.
-- Ayarları İçe/Dışa Aktarma - Yapılandırmanızı farklı ortamlar arasında kolayca yedekleyin veya paylaşın.
+- **Grok Desteği** - xAI sağlayıcısı eklendi ve OpenRouter'daki Grok modelleri için akıl yürütme çabası seçenekleri sunuldu
+- **Diff Düzenleme İyileştirmeleri** - Profil başına yapılandırma seçenekleri ve daha az hata için geliştirilmiş dize normalleştirme
+- **Daha Hızlı Kontrol Noktaları** - Daha hızlı ve daha güvenilir kontrol noktaları
 
 ---
 
