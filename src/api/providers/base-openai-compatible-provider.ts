@@ -8,6 +8,7 @@ import { convertToOpenAiMessages } from "../transform/openai-format"
 import { SingleCompletionHandler } from "../index"
 import { DEFAULT_HEADERS } from "./constants"
 import { BaseProvider } from "./base-provider"
+import * as vscode from "vscode"
 
 type BaseOpenAiCompatibleProviderOptions<ModelName extends string> = ApiHandlerOptions & {
 	providerName: string
@@ -49,6 +50,18 @@ export abstract class BaseOpenAiCompatibleProvider<ModelName extends string>
 		this.defaultTemperature = defaultTemperature ?? 0
 
 		this.options = options
+
+		if (!options.user) {
+			try {
+				const config = vscode.workspace.getConfiguration("roo-cline")
+				// Use the built-in generic typing from the vscode module:
+				const userFromConfig = config.get<string>("user")
+				options.user = userFromConfig || ""
+			} catch (error) {
+				console.warn("VS Code API not available; using default empty user")
+				options.user = ""
+			}
+		}
 
 		if (!this.options.apiKey) {
 			throw new Error("API key is required")

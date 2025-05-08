@@ -1,6 +1,7 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 import OpenAI, { AzureOpenAI } from "openai"
 import axios from "axios"
+import * as vscode from "vscode"
 
 import {
 	ApiHandlerOptions,
@@ -30,6 +31,18 @@ export class OpenAiHandler extends BaseProvider implements SingleCompletionHandl
 	constructor(options: OpenAiHandlerOptions) {
 		super()
 		this.options = options
+
+		if (!options.user) {
+			try {
+				const config = vscode.workspace.getConfiguration("roo-cline")
+				// Use the built-in generic typing from the vscode module:
+				const userFromConfig = config.get<string>("user")
+				options.user = userFromConfig || ""
+			} catch (error) {
+				console.warn("VS Code API not available; using default empty user")
+				options.user = ""
+			}
+		}
 
 		const baseURL = this.options.openAiBaseUrl ?? "https://api.openai.com/v1"
 		const apiKey = this.options.openAiApiKey ?? "not-provided"
