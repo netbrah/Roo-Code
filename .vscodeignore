@@ -19,6 +19,7 @@ jest.*
 **/.gitignore
 
 # Custom
+*.history
 .env.sample
 .git-blame-ignore-revs
 .gitconfig

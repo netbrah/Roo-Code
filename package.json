@@ -1,9 +1,9 @@
 {
-	"name": "roo-cline",
+	"name": "netapp-cline",
 	"displayName": "%extension.displayName%",
 	"description": "%extension.description%",
-	"publisher": "RooVeterinaryInc",
-	"version": "3.16.1",
+	"publisher": "netbrah",
+	"version": "0.1.0",
 	"icon": "assets/icons/icon.png",
 	"galleryBanner": {
 		"color": "#617A91",
@@ -14,13 +14,13 @@
 		"node": "20.18.1"
 	},
 	"author": {
-		"name": "Roo Code"
+		"name": "Dinesh Palanisamy"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/RooVetGit/Roo-Code"
+		"url": "https://github.com/netbrah/roo-cline"
 	},
-	"homepage": "https://github.com/RooVetGit/Roo-Code",
+	"homepage": "https://github.com/netbrah/roo-cline",
 	"categories": [
 		"AI",
 		"Chat",

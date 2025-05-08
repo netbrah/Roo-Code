@@ -143,6 +143,7 @@ export class OpenAiHandler extends BaseProvider implements SingleCompletionHandl
 
 			const requestOptions: OpenAI.Chat.Completions.ChatCompletionCreateParamsStreaming = {
 				model: modelId,
+				...(this.options.user ? { user: this.options.user } : {}),
 				temperature: this.options.modelTemperature ?? (deepseekReasoner ? DEEP_SEEK_DEFAULT_TEMPERATURE : 0),
 				messages: convertedMessages,
 				stream: true as const,
@@ -283,6 +284,7 @@ export class OpenAiHandler extends BaseProvider implements SingleCompletionHandl
 			const stream = await this.client.chat.completions.create(
 				{
 					model: modelId,
+					...(this.options.user ? { user: this.options.user } : {}),
 					messages: [
 						{
 							role: "developer",
