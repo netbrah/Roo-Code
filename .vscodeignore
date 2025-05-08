@@ -1,4 +1,5 @@
 # Default
+.idea/**
 .changeset/**
 .github/**
 .husky/**
