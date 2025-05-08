@@ -15,6 +15,7 @@ type BaseOpenAiCompatibleProviderOptions<ModelName extends string> = ApiHandlerO
 	defaultProviderModelId: ModelName
 	providerModels: Record<ModelName, ModelInfo>
 	defaultTemperature?: number
+	user?: string
 }
 
 export abstract class BaseOpenAiCompatibleProvider<ModelName extends string>
@@ -27,7 +28,7 @@ export abstract class BaseOpenAiCompatibleProvider<ModelName extends string>
 	protected readonly defaultProviderModelId: ModelName
 	protected readonly providerModels: Record<ModelName, ModelInfo>
 
-	protected readonly options: ApiHandlerOptions
+	protected readonly options: ApiHandlerOptions & { user?: string }
 
 	private client: OpenAI
 
@@ -75,6 +76,7 @@ export abstract class BaseOpenAiCompatibleProvider<ModelName extends string>
 			messages: [{ role: "system", content: systemPrompt }, ...convertToOpenAiMessages(messages)],
 			stream: true,
 			stream_options: { include_usage: true },
+			...(this.options.user ? { user: this.options.user } : {}),
 		}
 
 		const stream = await this.client.chat.completions.create(params)
@@ -106,6 +108,7 @@ export abstract class BaseOpenAiCompatibleProvider<ModelName extends string>
 			const response = await this.client.chat.completions.create({
 				model: modelId,
 				messages: [{ role: "user", content: prompt }],
+				...(this.options.user ? { user: this.options.user } : {}),
 			})
 
 			return response.choices[0]?.message.content || ""

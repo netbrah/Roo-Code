@@ -55,6 +55,8 @@ export const rooCodeDefaults: RooCodeSettings = {
 	showRooIgnoredFiles: true,
 	maxReadFileLine: 500, // -1 to enable full file reading.
 
+	user: "", // Add default empty user setting
+
 	language: "en",
 	telemetrySetting: "enabled",
 

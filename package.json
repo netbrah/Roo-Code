@@ -313,6 +313,11 @@
 					"type": "string",
 					"default": "",
 					"description": "%settings.customStoragePath.description%"
+				},
+				"roo-cline.user": {
+					"type": "string",
+					"default": "",
+					"description": "OpenAI User ID"
 				}
 			}
 		}

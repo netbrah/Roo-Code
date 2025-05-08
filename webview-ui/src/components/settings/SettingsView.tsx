@@ -9,7 +9,6 @@ import React, {
 	useRef,
 	useState,
 } from "react"
-import { useAppTranslation } from "@/i18n/TranslationContext"
 import {
 	CheckCheck,
 	SquareMousePointer,
@@ -21,12 +20,10 @@ import {
 	FlaskConical,
 	AlertTriangle,
 	Globe,
-	Info,
 	LucideIcon,
 } from "lucide-react"
 
 import { ExperimentId } from "@roo/shared/experiments"
-import { TelemetrySetting } from "@roo/shared/TelemetrySetting"
 import { ApiConfiguration } from "@roo/shared/api"
 
 import { vscode } from "@/utils/vscode"
@@ -60,9 +57,10 @@ import { ContextManagementSettings } from "./ContextManagementSettings"
 import { TerminalSettings } from "./TerminalSettings"
 import { ExperimentalSettings } from "./ExperimentalSettings"
 import { LanguageSettings } from "./LanguageSettings"
-import { About } from "./About"
+// import { About } from "./About"
 import { Section } from "./Section"
 import { cn } from "@/lib/utils"
+import { t } from "i18next"
 
 export const settingsTabsContainer = "flex flex-1 overflow-hidden [&.narrow_.tab-label]:hidden"
 export const settingsTabList =
@@ -85,7 +83,7 @@ const sectionNames = [
 	"terminal",
 	"experimental",
 	"language",
-	"about",
+	// "about",
 ] as const
 
 type SectionName = (typeof sectionNames)[number]
@@ -96,10 +94,10 @@ type SettingsViewProps = {
 }
 
 const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, targetSection }, ref) => {
-	const { t } = useAppTranslation()
+	//const { t } = useAppTranslation()
 
 	const extensionState = useExtensionState()
-	const { currentApiConfigName, listApiConfigMeta, uriScheme, version, settingsImportedAt } = extensionState
+	const { currentApiConfigName, listApiConfigMeta, uriScheme, /* version, */ settingsImportedAt } = extensionState
 
 	const [isDiscardDialogShow, setDiscardDialogShow] = useState(false)
 	const [isChangeDetected, setChangeDetected] = useState(false)
@@ -144,10 +142,9 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 		ttsEnabled,
 		ttsSpeed,
 		soundVolume,
-		telemetrySetting,
 		terminalOutputLineLimit,
 		terminalShellIntegrationTimeout,
-		terminalShellIntegrationDisabled, // Added from upstream
+		terminalShellIntegrationDisabled,
 		terminalCommandDelay,
 		terminalPowershellCounter,
 		terminalZshClearEolMark,
@@ -219,16 +216,16 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 		})
 	}, [])
 
-	const setTelemetrySetting = useCallback((setting: TelemetrySetting) => {
-		setCachedState((prevState) => {
-			if (prevState.telemetrySetting === setting) {
-				return prevState
-			}
-
-			setChangeDetected(true)
-			return { ...prevState, telemetrySetting: setting }
-		})
-	}, [])
+	// const setTelemetrySetting = useCallback((setting: TelemetrySetting) => {
+	//     setCachedState((prevState) => {
+	//         if (prevState.telemetrySetting === setting) {
+	//             return prevState
+	//         }
+	//
+	//         setChangeDetected(true)
+	//         return { ...prevState, telemetrySetting: setting }
+	//     })
+	// }, [])
 
 	const isSettingValid = !errorMessage
 
@@ -281,7 +278,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 			vscode.postMessage({ type: "alwaysAllowModeSwitch", bool: alwaysAllowModeSwitch })
 			vscode.postMessage({ type: "alwaysAllowSubtasks", bool: alwaysAllowSubtasks })
 			vscode.postMessage({ type: "upsertApiConfiguration", text: currentApiConfigName, apiConfiguration })
-			vscode.postMessage({ type: "telemetrySetting", text: telemetrySetting })
 			setChangeDetected(false)
 		}
 	}
@@ -360,7 +356,7 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 			{ id: "terminal", icon: SquareTerminal },
 			{ id: "experimental", icon: FlaskConical },
 			{ id: "language", icon: Globe },
-			{ id: "about", icon: Info },
+			// { id: "about", icon: Info },
 		],
 		[], // No dependencies needed now
 	)
@@ -634,14 +630,7 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 						<LanguageSettings language={language || "en"} setCachedStateField={setCachedStateField} />
 					)}
 
-					{/* About Section */}
-					{activeTab === "about" && (
-						<About
-							version={version}
-							telemetrySetting={telemetrySetting}
-							setTelemetrySetting={setTelemetrySetting}
-						/>
-					)}
+					{/* About Section removed */}
 				</TabContent>
 			</div>
 

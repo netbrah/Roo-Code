@@ -19,7 +19,9 @@ import { DEFAULT_HEADERS, DEEP_SEEK_DEFAULT_TEMPERATURE } from "./constants"
 
 export const AZURE_AI_INFERENCE_PATH = "/models/chat/completions"
 
-export interface OpenAiHandlerOptions extends ApiHandlerOptions {}
+export interface OpenAiHandlerOptions extends ApiHandlerOptions {
+	user?: string
+}
 
 export class OpenAiHandler extends BaseProvider implements SingleCompletionHandler {
 	protected options: OpenAiHandlerOptions
@@ -209,6 +211,7 @@ export class OpenAiHandler extends BaseProvider implements SingleCompletionHandl
 					: enabledLegacyFormat
 						? [systemMessage, ...convertToSimpleMessages(messages)]
 						: [systemMessage, ...convertToOpenAiMessages(messages)],
+				...(this.options.user ? { user: this.options.user } : {}),
 			}
 
 			const response = await this.client.chat.completions.create(
@@ -249,6 +252,7 @@ export class OpenAiHandler extends BaseProvider implements SingleCompletionHandl
 			const requestOptions: OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming = {
 				model: this.getModel().id,
 				messages: [{ role: "user", content: prompt }],
+				...(this.options.user ? { user: this.options.user } : {}),
 			}
 
 			const response = await this.client.chat.completions.create(
@@ -304,6 +308,7 @@ export class OpenAiHandler extends BaseProvider implements SingleCompletionHandl
 					},
 					...convertToOpenAiMessages(messages),
 				],
+				...(this.options.user ? { user: this.options.user } : {}),
 			}
 
 			const methodIsAzureAiInference = this._isAzureAiInference(this.options.openAiBaseUrl)
